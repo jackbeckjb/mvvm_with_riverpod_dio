@@ -7,27 +7,7 @@ import 'package:mvvm_with_riverpod_dio/viewModels/controller/user_controller/use
 class UserController extends StateNotifier<UserState> {
   final UserRepo repository;
   UserController(this.repository) : super(UserState()) {
-    loadUsers();
-  }
-
-  // Validate inputs
-  bool _validate(String email, String password) {
-    String? emailError;
-    String? passwordError;
-
-    if (!RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
-      emailError = "Invalid email";
-    }
-    if (password.length < 6) {
-      passwordError = "Password must be at least 6 chars";
-    }
-
-    state = state.copyWith(
-      emailError: emailError,
-      passwordError: passwordError,
-    );
-
-    return emailError == null && passwordError == null;
+    // loadUsers();
   }
 
   Future<bool> loadUsers() async {
@@ -37,7 +17,7 @@ class UserController extends StateNotifier<UserState> {
     if (result.success) {
       state = state.copyWith(
         users: result.data,
-        message: result.message ?? "Success",
+        message: "",
         isLoading: false, // Don't forget to set loading to false
       );
       return true;

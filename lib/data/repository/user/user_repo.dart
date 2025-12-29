@@ -9,7 +9,7 @@ class UserRepo {
   Future<ApiResponse<List<User>>> fetchUsers() async {
     try {
       final response = await apiService.get(
-        '/users',
+        '/data',
         // queryParameters: {"page": 1},
       );
 
