@@ -23,13 +23,27 @@
 //   ];
 // }
 
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mvvm_with_riverpod_dio/view/screens/bottom_navigation_screen.dart';
+import 'package:mvvm_with_riverpod_dio/view/screens/home_screen.dart';
 import 'package:mvvm_with_riverpod_dio/view/screens/login_screen.dart';
 import 'package:mvvm_with_riverpod_dio/view/screens/splash.dart';
+import 'package:mvvm_with_riverpod_dio/view/screens/task_screen.dart';
+
+final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'root',
+);
+final GlobalKey<NavigatorState> _tabANavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'tabANav',
+);
+final GlobalKey<NavigatorState> _tabBNavigatorKey = GlobalKey<NavigatorState>(
+  debugLabel: 'tabBNav',
+);
 
 final GoRouter router = GoRouter(
   initialLocation: "/",
+  navigatorKey: _rootNavigatorKey,
   routes: [
     GoRoute(
       path: '/',
@@ -42,23 +56,47 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const LoginScreen(),
     ),
     // Persistent bottom navigation shell
-    GoRoute(
-      path: '/bottom-nav',
-      builder: (context, state) => const BearBottomNavScreen(),
+    StatefulShellRoute(
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: _tabANavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/home',
+              name: "HomeScreen",
+              builder: (context, state) => const HomeScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _tabBNavigatorKey,
+          routes: [
+            GoRoute(
+              path: '/task',
+              name: "TaskScreen",
+              builder: (context, state) => const TaskScreen(),
+            ),
+          ],
+        ),
+      ],
+      builder: (context, state, navigationShell) {
+        return navigationShell;
+      },
+
+      navigatorContainerBuilder:
+          (
+            BuildContext context,
+            StatefulNavigationShell navigationShell,
+            List<Widget> children,
+          ) {
+            return BottomNavScreen(
+              navigationShell: navigationShell,
+              children: children,
+            );
+          },
     ),
-    // GoRoute(
-    //   path: '/home',
-    //   name: "HomeScreen",
-    //   builder: (context, state) => const HomeScreen(),
-    // ),
-    // GoRoute(
-    //   path: '/task',
-    //   name: "TaskScreen",
-    //   builder: (context, state) => const TaskScreen(),
-    // ),
   ],
 );
-
 
 
 // // Nested Routes (Child Pages)

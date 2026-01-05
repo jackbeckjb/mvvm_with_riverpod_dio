@@ -36,16 +36,16 @@ class LoginController extends StateNotifier<LoginState> {
     required String email,
     required String password,
   }) async {
-    bool isValid = _validate(email, password);
-    if (!isValid) return;
+    // bool isValid = _validate(email, password);
+    // if (!isValid) return;
 
-    state = state.copyWith(isLoading: true);
+    // state = state.copyWith(isLoading: true);
 
-    await Future.delayed(const Duration(seconds: 2)); // Fake API call
+    // await Future.delayed(const Duration(seconds: 2)); // Fake API call
 
-    // For demo, always succeed
-    state = state.copyWith(isLoading: false);
-    context.go('/bottom-nav');
+    // // For demo, always succeed
+    // state = state.copyWith(isLoading: false);
+    context.go('/home');
 
     // You could store rememberMe in local storage here if needed
   }
