@@ -20,7 +20,7 @@ class BearBottomNavScreen extends HookConsumerWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           height: 60,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: BottomNavigationBarTheme.of(context).backgroundColor,
             borderRadius: BorderRadius.circular(20),
             boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 5)],
           ),
