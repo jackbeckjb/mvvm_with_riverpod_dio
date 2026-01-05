@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mvvm_with_riverpod_dio/core/config/environment.dart';
 import 'package:mvvm_with_riverpod_dio/core/enums/app_environment_enum.dart';
-import 'package:mvvm_with_riverpod_dio/view/screens/splash.dart';
+import 'package:mvvm_with_riverpod_dio/res/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
       splitScreenMode: false,
       useInheritedMediaQuery: true,
       child: ProviderScope(
-        child: MaterialApp(
+        child: MaterialApp.router(
           locale: const Locale('en', 'US'),
 
           title: 'Flutter Demo',
@@ -37,7 +37,7 @@ class MainApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: SplashScreen(),
+          routerConfig: router,
         ),
       ),
     );

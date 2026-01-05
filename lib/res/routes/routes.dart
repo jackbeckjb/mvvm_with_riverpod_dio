@@ -22,3 +22,54 @@
 //     ),
 //   ];
 // }
+
+import 'package:go_router/go_router.dart';
+import 'package:mvvm_with_riverpod_dio/view/screens/bottom_navigation_screen.dart';
+import 'package:mvvm_with_riverpod_dio/view/screens/login_screen.dart';
+import 'package:mvvm_with_riverpod_dio/view/screens/splash.dart';
+
+final GoRouter router = GoRouter(
+  initialLocation: "/",
+  routes: [
+    GoRoute(
+      path: '/',
+      name: "SplashScreen",
+      builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: '/login',
+      name: "LoginScreen",
+      builder: (context, state) => const LoginScreen(),
+    ),
+    // Persistent bottom navigation shell
+    GoRoute(
+      path: '/bottom-nav',
+      builder: (context, state) => const BearBottomNavScreen(),
+    ),
+    // GoRoute(
+    //   path: '/home',
+    //   name: "HomeScreen",
+    //   builder: (context, state) => const HomeScreen(),
+    // ),
+    // GoRoute(
+    //   path: '/task',
+    //   name: "TaskScreen",
+    //   builder: (context, state) => const TaskScreen(),
+    // ),
+  ],
+);
+
+
+
+// // Nested Routes (Child Pages)
+// GoRoute(
+//   path: '/dashboard',
+//   builder: (context, state) => const DashboardScreen(),
+//   routes: [
+//     GoRoute(
+//       path: 'settings',
+//       builder: (context, state) => const SettingsScreen(),
+//     ),
+//   ],
+// ),
+// context.push('/dashboard/settings');

@@ -89,6 +89,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     userController = ref.read(userControllerProvider.notifier);
+
+    // if you need to call every time whenever user hit this screen then this is ideal but if you want only once then call it in controller constructor Or use above exmaple
     Future.microtask(() {
       userController.loadUsers();
     });

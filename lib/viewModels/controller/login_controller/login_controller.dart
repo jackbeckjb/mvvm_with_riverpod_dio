@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:mvvm_with_riverpod_dio/view/screens/home_screen.dart';
+import 'package:go_router/go_router.dart';
 
 import 'login_state.dart';
 
@@ -45,13 +45,7 @@ class LoginController extends StateNotifier<LoginState> {
 
     // For demo, always succeed
     state = state.copyWith(isLoading: false);
-    Navigator.pushReplacement(
-      // ignore: use_build_context_synchronously
-      context,
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
-      ),
-    );
+    context.go('/bottom-nav');
 
     // You could store rememberMe in local storage here if needed
   }
