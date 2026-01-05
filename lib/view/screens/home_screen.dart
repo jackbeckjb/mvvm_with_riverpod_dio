@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mvvm_with_riverpod_dio/core/enums/app_theme_mode_enum.dart';
 import 'package:mvvm_with_riverpod_dio/core/providers/providers.dart';
 import 'package:mvvm_with_riverpod_dio/res/colors/app_colors.dart';
 import 'package:mvvm_with_riverpod_dio/res/fonts/app_fonts.dart';
 import 'package:mvvm_with_riverpod_dio/utils/utils.dart';
 import 'package:mvvm_with_riverpod_dio/view/components/exception/general_exceptions.dart';
 import 'package:mvvm_with_riverpod_dio/view/components/exception/internet_exceptions.dart';
+import 'package:mvvm_with_riverpod_dio/viewModels/controller/theme/theme_state.dart';
 import 'package:mvvm_with_riverpod_dio/viewModels/controller/user_controller/user_controller.dart';
 
 // Exmple 1: the api calling from controller constructor
@@ -99,6 +101,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeMode = ref.watch(themeProvider);
     debugPrint("hello ");
     return Scaffold(
       appBar: AppBar(
@@ -115,6 +118,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             style: AppFonts.headingTextStyle.copyWith(color: AppColors.black),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              themeMode.theme == AppThemeMode.dark
+                  ? Icons.dark_mode
+                  : Icons.light_mode,
+            ),
+            onPressed: () {
+              ref.read(themeProvider.notifier).toggleTheme();
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Consumer(
