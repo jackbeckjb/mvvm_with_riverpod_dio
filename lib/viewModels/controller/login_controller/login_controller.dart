@@ -45,7 +45,9 @@ class LoginController extends StateNotifier<LoginState> {
 
     // // For demo, always succeed
     // state = state.copyWith(isLoading: false);
-    context.go('/home');
+    if (context.mounted) {
+      context.go('/home');
+    }
 
     // You could store rememberMe in local storage here if needed
   }

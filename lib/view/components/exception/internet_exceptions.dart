@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mvvm_with_riverpod_dio/res/colors/app_colors.dart';
+import 'package:mvvm_with_riverpod_dio/res/extensions/themex_extension.dart';
 
 class InternetExceptionWidget extends StatelessWidget {
   final VoidCallback? onRetry;
@@ -19,7 +20,9 @@ class InternetExceptionWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
         child: Card(
           elevation: 6,
-          shadowColor: AppColors.primaryColor.withOpacity(0.4),
+          shadowColor: context.adaptiveColor.primaryColor.withValues(
+            alpha: 0.4,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.r),
           ),
@@ -28,7 +31,11 @@ class InternetExceptionWidget extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.cloud_off, color: AppColors.red, size: 60.w),
+                Icon(
+                  Icons.cloud_off,
+                  color: context.adaptiveColor.red,
+                  size: 60.w,
+                ),
                 SizedBox(height: 20.h),
                 Text(
                   message ??
@@ -37,7 +44,7 @@ class InternetExceptionWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
-                    color: AppColors.black,
+                    color: context.adaptiveColor.black,
                   ),
                 ),
                 SizedBox(height: 25.h),
@@ -45,7 +52,7 @@ class InternetExceptionWidget extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     onPressed: onRetry,
-                    icon: const Icon(Icons.refresh, color: AppColors.white),
+                    icon: Icon(Icons.refresh, color: AppColors.white),
                     label: Text(
                       "Retry",
                       style: TextStyle(
@@ -55,7 +62,7 @@ class InternetExceptionWidget extends StatelessWidget {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primaryColor,
+                      backgroundColor: context.adaptiveColor.primaryColor,
                       padding: EdgeInsets.symmetric(vertical: 14.h),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.r),

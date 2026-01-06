@@ -3,11 +3,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mvvm_with_riverpod_dio/core/enums/app_theme_mode_enum.dart';
 import 'package:mvvm_with_riverpod_dio/core/providers/providers.dart';
 import 'package:mvvm_with_riverpod_dio/res/colors/app_colors.dart';
+import 'package:mvvm_with_riverpod_dio/res/extensions/themex_extension.dart';
 import 'package:mvvm_with_riverpod_dio/res/fonts/app_fonts.dart';
 import 'package:mvvm_with_riverpod_dio/utils/utils.dart';
 import 'package:mvvm_with_riverpod_dio/view/components/exception/general_exceptions.dart';
 import 'package:mvvm_with_riverpod_dio/view/components/exception/internet_exceptions.dart';
-import 'package:mvvm_with_riverpod_dio/viewModels/controller/theme/theme_state.dart';
 import 'package:mvvm_with_riverpod_dio/viewModels/controller/user_controller/user_controller.dart';
 
 // Exmple 1: the api calling from controller constructor
@@ -115,7 +115,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           },
           child: Text(
             "User",
-            style: AppFonts.headingTextStyle.copyWith(color: AppColors.black),
+            style: AppFonts.headingTextStyle.copyWith(
+              color: context.adaptiveColor.black,
+            ),
           ),
         ),
         actions: [
@@ -137,7 +139,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             final state = ref.watch(userControllerProvider);
             if (state.isLoading) {
               return const Center(
-                child: CircularProgressIndicator(color: Colors.red),
+                child: CircularProgressIndicator(
+                  color: AppColors.secondaryColor,
+                ),
               );
             }
 

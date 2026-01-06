@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mvvm_with_riverpod_dio/core/enums/app_theme_mode_enum.dart';
 import 'package:mvvm_with_riverpod_dio/data/network/api_client.dart';
 import 'package:mvvm_with_riverpod_dio/data/network/network_api_service.dart';
 import 'package:mvvm_with_riverpod_dio/data/repository/user/user_repo.dart';
