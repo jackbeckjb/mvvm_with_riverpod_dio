@@ -6,7 +6,9 @@ class SplashService {
 
   void initApp(BuildContext context) {
     Future.delayed(Duration(seconds: 3), () {
-      context.go("/login");
+      if (context.mounted) {
+        context.go("/login");
+      }
     });
   }
 }

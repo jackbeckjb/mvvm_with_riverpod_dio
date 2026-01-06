@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mvvm_with_riverpod_dio/data/models/bottom_navigation/bottom_navigation_model.dart';
 import 'package:mvvm_with_riverpod_dio/view/screens/home_screen.dart';
 import 'package:mvvm_with_riverpod_dio/view/screens/task_screen.dart';
